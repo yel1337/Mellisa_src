@@ -7,11 +7,11 @@ class ScrapeParameters(scrapy.Spider):
 
     start_urls = []
     def __init__(self, url=None, start_urls=None, *args, **kwargs):
-        super(ScrapeParameters, self).__init__(*args, **kwargs) # Added this -1 
+        super(ScrapeParameters, self).__init__(*args, **kwargs)  
         if url:
             self.start_urls = [f"{url}"]
         elif start_urls:
-            self.start_urls = start_urls # Added this -2 
+            self.start_urls = start_urls  
 
     def load_xpath(self, file_path):
         with open(file_path, "r") as f:

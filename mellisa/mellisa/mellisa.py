@@ -7,10 +7,9 @@ from scrapy.crawler import CrawlerProcess
 from spiders.m_spider import ScrapeParameters
 from scrapy.utils.project import get_project_settings
 
-def run_spider(spider_name, output_file=None,**kwargs):
+def run_spider(spider_name, output_file=None, **kwargs):
     settings = get_project_settings()
-
-    # Added -3 
+ 
     if output_file:
         settings.update({
         'FEED_FORMAT': 'json',
@@ -25,8 +24,7 @@ def run_spider(spider_name, output_file=None,**kwargs):
 def main():
     parser = argparse.ArgumentParser(description="Hi, from Mellisa!")
     parser.add_argument('spider', help='Name of the spider to run')
-    parser.add_argument('--url', help="URL of the website to crawl")
-    # Added -4 
+    parser.add_argument('--url', help="URL of the website to crawl") 
     parser.add_argument('--o', '--output', dest='output', help="Output JSON file path") 
 
     args = parser.parse_args()
