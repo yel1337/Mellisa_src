@@ -3,9 +3,18 @@ import os
 import sys
 mellisa = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, mellisa)
+import ascii.description_ascii
 from scrapy.crawler import CrawlerProcess
 from spiders.m_spider import ScrapeParameters
 from scrapy.utils.project import get_project_settings
+import ascii
+
+class CustomHelpFormatter(argparse.RawDescriptionHelpFormatter):
+    def start_section(self, heading):
+        # Replace "positional arguments" with custom heading
+        if heading.lower() == 'positional arguments':
+            heading = 'COMMANDS'
+        return super().start_section(heading)
 
 def run_spider(spider_name, output_file=None, **kwargs):
     settings = get_project_settings()
@@ -22,9 +31,9 @@ def run_spider(spider_name, output_file=None, **kwargs):
     process.start()
 
 def main():
-    parser = argparse.ArgumentParser(description="Hi, from Mellisa!")
+    parser = argparse.ArgumentParser(description=ascii.description_ascii.mellisa_ascii, formatter_class=CustomHelpFormatter)
     parser.add_argument('spider', help='Name of the spider to run')
-    parser.add_argument('--url', help="URL of the website to crawl") 
+    parser.add_argument('url', help="URL of the website to crawl") 
     parser.add_argument('--o', '--output', dest='output', help="Output JSON file path") 
 
     args = parser.parse_args()
