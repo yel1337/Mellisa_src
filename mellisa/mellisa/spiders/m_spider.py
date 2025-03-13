@@ -24,7 +24,14 @@ class ScrapeParameters(scrapy.Spider):
 
         loader = ItemLoader(item=MellisaItem(), response=response)
 
-        for query in xpaths:
-            loader.add_xpath("item_param", query)
+        if isinstance(xpaths, list):
+             xpaths = xpaths[0] if xpaths else ""
+
+        datas = response.xpath(xpaths).extract()
+        data_len = len(datas)
+
+        print(f"Total number of scraped data from page: {data_len}")
+
+        loader.add_value("item_param", datas)
 
         yield loader.load_item()

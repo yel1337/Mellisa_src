@@ -40,7 +40,11 @@ def main():
 
     spider_kwargs = {}
     if args.url:
+        print(ascii.description_ascii.mellisa_ascii)
         spider_kwargs['start_urls'] = [args.url]
+    if args.output:
+        output_filePath = "/home/user/Mellisa/mellisa/mellisa/output/example.json"
+        print(f"Output file saved in: {output_filePath}")
 
     run_spider(args.spider, output_file=args.output,**spider_kwargs)
 
