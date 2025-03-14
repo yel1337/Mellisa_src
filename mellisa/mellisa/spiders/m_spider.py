@@ -1,4 +1,5 @@
 import scrapy
+import os
 from scrapy.loader import ItemLoader
 from items import MellisaItem
 
@@ -15,10 +16,13 @@ class ScrapeParameters(scrapy.Spider):
 
     def load_xpath(self, file_path):
         with open(file_path, "r") as f:
-            return [line.strip() for line in f if line.strip()]  
+            return [line.strip() for line in f if line.strip()] 
+
+    def returnNumData(self, data_len):
+        return print(f"Total number of scraped data from page: {data_len}") 
 
     def parse(self, response):
-        path = "/home/yel/Mellisa_src/mellisa/mellisa/wordlist.txt"
+        path = os.path.join(os.path.expanduser("~"), "Mellisa_src/mellisa/mellisa/wordlist.txt")
         
         xpaths = self.load_xpath(path)
 
@@ -30,7 +34,7 @@ class ScrapeParameters(scrapy.Spider):
         datas = response.xpath(xpaths).extract()
         data_len = len(datas)
 
-        print(f"Total number of scraped data from page: {data_len}")
+        returnNum = self.returnNumData(data_len)
 
         loader.add_value("item_param", datas)
 

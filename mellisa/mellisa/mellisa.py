@@ -18,11 +18,14 @@ class CustomHelpFormatter(argparse.RawDescriptionHelpFormatter):
 
 def run_spider(spider_name, output_file=None, **kwargs):
     settings = get_project_settings()
- 
+
+    output_folder = os.path.join(os.path.expanduser("~"), "Mellisa_src/mellisa/mellisa/output")
+    output_path = os.path.join(output_folder, output_file)
+
     if output_file:
         settings.update({
         'FEED_FORMAT': 'json',
-        'FEED_URI': output_file,
+        'FEED_URI': output_path,
         'FEED_EXPORT_ENCODING': 'utf-8'
     })
 
