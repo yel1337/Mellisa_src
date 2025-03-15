@@ -9,7 +9,7 @@ class Misc:
 
     def misc_output(self):
         print("")
-        output_filePath = "/home/user/Mellisa/mellisa/mellisa/output/output.json"
+        output_filePath = "/home/user/Mellisa/mellisa/mellisa/output/domain.json"
         print(f"Output file saved in: {output_filePath}")
 
     def misc_saving(self):

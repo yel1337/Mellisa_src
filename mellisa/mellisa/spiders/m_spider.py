@@ -27,10 +27,8 @@ class ScrapeParameters(scrapy.Spider):
         return print(f"[✓] Total number of scraped parameter/s from page: {data_len}")
 
     def returnNone(self, data_len):
-         misc = Misc()
          if data_len == 0:
-            misc.misc_saving()
-            print("[!] Page might not contain any parameters to be extracted, maybe try another one?")
+            print("[!] Page might not contain any parameter/s to be extracted, maybe try another one?")
             time.sleep(2)
             print("[!] No parameter/s were scraped from the page")
 
