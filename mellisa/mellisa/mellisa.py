@@ -1,6 +1,6 @@
 import argparse
 import os
-import sys
+import sys 
 mellisa = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, mellisa)
 import ascii.description_ascii
@@ -31,6 +31,7 @@ def run_spider(spider_name, output_file=None, **kwargs):
 
     process = CrawlerProcess(settings)
     process.crawl(spider_name, **kwargs)
+
     process.start()
 
 def main():
@@ -45,9 +46,6 @@ def main():
     if args.url:
         print(ascii.description_ascii.mellisa_ascii)
         spider_kwargs['start_urls'] = [args.url]
-    if args.output:
-        output_filePath = "/home/user/Mellisa/mellisa/mellisa/output/example.json"
-        print(f"Output file saved in: {output_filePath}")
 
     run_spider(args.spider, output_file=args.output,**spider_kwargs)
 
